@@ -21,65 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdW-yb-YED">
-                                <rect key="frame" x="122.5" y="80" width="130" height="33"/>
-                                <color key="backgroundColor" red="1" green="0.39586979150000001" blue="0.47812157869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="Kte-Yx-GAw"/>
-                                    <constraint firstAttribute="width" constant="130" id="chL-uI-sbN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Animation 1">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3D-Q1-Zjp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="nDw-t5-UJJ" kind="show" id="NcA-HW-Idd"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="KEu-mc-IeI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aaT-Xp-ahv"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87W-eB-GCF">
-                                <rect key="frame" x="122" y="121" width="130" height="33"/>
-                                <color key="backgroundColor" red="1" green="0.39586979150000001" blue="0.47812157869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="6fI-HL-IBM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Animation 2">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="FAv-wy-wrg" kind="show" id="jhN-gj-mDH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoV-ro-Cbb">
-                                <rect key="frame" x="122" y="162" width="130" height="33"/>
-                                <color key="backgroundColor" red="1" green="0.39586979150000001" blue="0.47812157869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="lUj-u1-sTb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Animation 3">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="animationThreeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hS2-bR-uJ0"/>
-                                </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eoV-ro-Cbb" firstAttribute="width" secondItem="87W-eB-GCF" secondAttribute="width" id="2S7-Ns-d5t"/>
-                            <constraint firstItem="FdW-yb-YED" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="DAh-pA-lj3"/>
-                            <constraint firstItem="87W-eB-GCF" firstAttribute="centerX" secondItem="FdW-yb-YED" secondAttribute="centerX" id="bd4-Gy-eIS"/>
-                            <constraint firstItem="87W-eB-GCF" firstAttribute="top" secondItem="FdW-yb-YED" secondAttribute="bottom" constant="8" id="gq1-wi-1Fm"/>
-                            <constraint firstItem="87W-eB-GCF" firstAttribute="width" secondItem="FdW-yb-YED" secondAttribute="width" id="j7f-zD-nXI"/>
-                            <constraint firstItem="eoV-ro-Cbb" firstAttribute="top" secondItem="87W-eB-GCF" secondAttribute="bottom" constant="8" id="lA0-cj-Yld"/>
-                            <constraint firstItem="eoV-ro-Cbb" firstAttribute="centerX" secondItem="87W-eB-GCF" secondAttribute="centerX" id="rY5-8P-Nn6"/>
-                            <constraint firstItem="FdW-yb-YED" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uNG-C9-gig"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="R3D-Q1-Zjp" secondAttribute="bottom" id="8Sy-72-5Io"/>
+                            <constraint firstItem="R3D-Q1-Zjp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QvE-aX-jeB"/>
+                            <constraint firstAttribute="trailing" secondItem="R3D-Q1-Zjp" secondAttribute="trailing" id="f5l-ti-Gtx"/>
+                            <constraint firstItem="R3D-Q1-Zjp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jgV-BJ-3vu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kHY-et-52K"/>
                     <connections>
-                        <outlet property="button1Constraint" destination="uNG-C9-gig" id="x3V-yh-BMz"/>
+                        <outlet property="tableView" destination="R3D-Q1-Zjp" id="ewW-t4-fpR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -127,7 +88,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZDa-lt-s3j">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>

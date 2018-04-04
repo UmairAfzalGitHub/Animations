@@ -21,7 +21,10 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        animateTableView()
+
+        if animationType == 2 {
+            animateTableView()
+        }
     }
 
     // MARK: - UITableView DataSource
@@ -43,13 +46,25 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
         // setting inital state
         cell.alpha = 0.4
 
-        if animationType == 0 {
+        switch animationType {
+
+        case 0:
             let transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.bounds.size.width, 30, 0)
             cell.layer.transform = transform
+            break
 
-        } else {
+        case 1:
             let transform = CATransform3DTranslate(CATransform3DIdentity, tableView.bounds.size.width, 30, 0)
             cell.layer.transform = transform
+            break
+
+        case 3:
+            let transform = CATransform3DTranslate(CATransform3DIdentity, 0, -tableView.bounds.size.width, 0)
+            cell.layer.transform = transform
+            break
+
+        default:
+            break
         }
 
         // Animating to final stage
@@ -57,10 +72,6 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
             cell.alpha = 1.0
             cell.layer.transform = CATransform3DIdentity
         }
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 282.5
     }
     
     func animateTableView() {
