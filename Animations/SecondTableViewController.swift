@@ -11,27 +11,25 @@ import UIKit
 class SecondTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableVew: UITableView!
-    var animationType: Int = 0
+    var animationType: AnimationType?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableVew.delegate = self
         tableVew.dataSource = self
+
+        self.title = "\(animationType!)"
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if animationType == 2 {
+        if animationType == .slideFromTop {
             animateTableView()
         }
     }
 
     // MARK: - UITableView DataSource
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -48,20 +46,37 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
 
         switch animationType {
 
-        case 0:
+        case .slideFromLeft?:
             let transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.bounds.size.width, 30, 0)
             cell.layer.transform = transform
             break
 
-        case 1:
+        case .slideFromRight?:
             let transform = CATransform3DTranslate(CATransform3DIdentity, tableView.bounds.size.width, 30, 0)
             cell.layer.transform = transform
             break
 
-        case 3:
+        case .slideFromBottom?:
             let transform = CATransform3DTranslate(CATransform3DIdentity, 0, -tableView.bounds.size.width, 0)
             cell.layer.transform = transform
             break
+
+        case .fadeIn?:
+            cell.alpha = 0.0
+
+            UIView.animate(withDuration: 0.8, animations: {
+                cell.alpha = 1.0
+            })
+
+        case .zoomIn?:
+
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)}, completion: { _ in
+
+                UIView.animate(withDuration: 0.1) {
+                    cell.transform = CGAffineTransform.identity
+                }
+            })
 
         default:
             break

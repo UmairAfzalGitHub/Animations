@@ -8,14 +8,23 @@
 
 import UIKit
 
+enum AnimationType: String {
+    case slideFromLeft = "slideFromLeft"
+    case slideFromRight = "slideFromRight"
+    case slideFromBottom = "slideFromBottom"
+    case slideFromTop = "slideFromTop"
+    case fadeIn = "fadeIn"
+    case zoomIn = "ZoomIn"
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var button1Constraint: NSLayoutConstraint!
-    @IBOutlet weak var button2Constraint: NSLayoutConstraint!
+    // MARK: - Variables & Constants
 
-    var dataSource = ["Animation 1", "Animation 2", "Animation 3", "Animation 4"]
+    @IBOutlet weak var tableView: UITableView!
+    var dataSource = ["Slide from Left", "Slide from Right", "Slide from Bottom", "Slide from Top", "Fade in", "Zoom in"]
+
+    // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +33,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    }
-
-    @IBAction func animationThreeButtonTapped(_ sender: Any) {
     }
 
     // MARK: - UITableView DataSource
@@ -55,22 +61,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch indexPath.row {
 
         case 0:
-            controller.animationType = 0
+            controller.animationType = .slideFromLeft
             self.navigationController?.pushViewController(controller, animated: true)
             break
 
         case 1:
-            controller.animationType = 1
+            controller.animationType = .slideFromRight
             self.navigationController?.pushViewController(controller, animated: true)
             break
 
         case 2:
-            controller.animationType = 2
+            controller.animationType = .slideFromTop
             self.navigationController?.pushViewController(controller, animated: true)
             break
 
         case 3:
-            controller.animationType = 3
+            controller.animationType = .slideFromBottom
+            self.navigationController?.pushViewController(controller, animated: true)
+            break
+
+        case 4:
+            controller.animationType = .fadeIn
+            self.navigationController?.pushViewController(controller, animated: true)
+            break
+
+        case 5:
+            controller.animationType = .zoomIn
             self.navigationController?.pushViewController(controller, animated: true)
             break
 
@@ -79,4 +95,3 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 }
-
