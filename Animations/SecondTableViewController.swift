@@ -78,6 +78,16 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             })
 
+        case .zoomOut?:
+
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)}, completion: { _ in
+
+                    UIView.animate(withDuration: 0.1) {
+                        cell.transform = CGAffineTransform.identity
+                    }
+            })
+
         default:
             break
         }
@@ -88,7 +98,7 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
             cell.layer.transform = CATransform3DIdentity
         }
     }
-    
+
     func animateTableView() {
         self.tableVew.reloadData()
         let cells = self.tableVew.visibleCells

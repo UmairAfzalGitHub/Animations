@@ -15,6 +15,7 @@ enum AnimationType: String {
     case slideFromTop = "slideFromTop"
     case fadeIn = "fadeIn"
     case zoomIn = "ZoomIn"
+    case zoomOut = "ZoomOut"
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -22,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Variables & Constants
 
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = ["Slide from Left", "Slide from Right", "Slide from Bottom", "Slide from Top", "Fade in", "Zoom in"]
+    var dataSource = ["Slide from Left", "Slide from Right", "Slide from Bottom", "Slide from Top", "Fade in", "Zoom in", "ZoomOut"]
 
     // MARK: - UIViewController Methods
 
@@ -87,6 +88,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         case 5:
             controller.animationType = .zoomIn
+            self.navigationController?.pushViewController(controller, animated: true)
+            break
+
+        case 6:
+            controller.animationType = .zoomOut
             self.navigationController?.pushViewController(controller, animated: true)
             break
 
