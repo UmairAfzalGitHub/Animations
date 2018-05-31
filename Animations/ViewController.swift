@@ -16,6 +16,8 @@ enum AnimationType: String {
     case fadeIn = "fadeIn"
     case zoomIn = "ZoomIn"
     case zoomOut = "ZoomOut"
+    case paperFoldLeft = "paperFoldLeft"
+    case paperFoldRight = "paperFoldRight"
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -23,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Variables & Constants
 
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = ["Slide from Left", "Slide from Right", "Slide from Bottom", "Slide from Top", "Fade in", "Zoom in", "ZoomOut"]
+    var dataSource = ["Slide from Left", "Slide from Right", "Slide from Bottom", "Slide from Top", "Fade in", "Zoom in", "ZoomOut", "paper Fold Left", "paper Fold Right"]
 
     // MARK: - UIViewController Methods
 
@@ -96,6 +98,16 @@ extension ViewController {
 
         case 6:
             controller.animationType = .zoomOut
+            self.navigationController?.pushViewController(controller, animated: true)
+            break
+
+        case 7:
+            controller.animationType = .paperFoldLeft
+            self.navigationController?.pushViewController(controller, animated: true)
+            break
+
+        case 8:
+            controller.animationType = .paperFoldRight
             self.navigationController?.pushViewController(controller, animated: true)
             break
 

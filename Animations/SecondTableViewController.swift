@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum Direction: String {
+    case right = "right"
+    case left = "left"
+    case top = "top"
+    case bottom = "bottom"
+}
+
 class SecondTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableVew: UITableView!
@@ -28,6 +35,66 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
             animateTableView()
         }
     }
+
+    // MARK: - Private Methods
+
+    func animateTableView() {
+        self.tableVew.reloadData()
+        let cells = self.tableVew.visibleCells
+        let tableViewHeight = self.tableVew.bounds.size.height
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+
+        for cell in cells {
+
+            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                cell.transform = CGAffineTransform.identity
+                }, completion: nil)
+            delayCounter += 1
+        }
+    }
+
+    func paperFoldAnimation(cell: UITableViewCell, direction: Direction) {
+        var rotation = CATransform3D()
+
+        if direction == .left {
+            rotation = CATransform3DMakeRotation((90.0 * .pi) / 180, 0.0, 0.7, 0.4)
+
+        } else if direction == .right {
+            rotation = CATransform3DMakeRotation((90.0 * .pi) / 180, 1.0, 0.7, 0.4)
+
+        }
+
+        rotation.m34 = 1.0 / -600
+        //2. Define the initial state (Before the animation)
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+        cell.alpha = 0
+        cell.layer.transform = rotation
+
+        if direction == .left {
+            cell.layer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+
+        } else if direction == .right {
+            cell.layer.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        }
+
+        //3. Define the final state (After the animation) and commit the animation
+        UIView.beginAnimations("rotation", context: nil)
+        UIView.setAnimationDuration(0.8)
+        cell.layer.transform = CATransform3DIdentity
+        cell.alpha = 1
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        UIView.commitAnimations()
+    }
+}
+
+extension SecondTableViewController {
+
 
     // MARK: - UITableView DataSource
 
@@ -73,9 +140,9 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
             UIView.animate(withDuration: 0.1, animations: {
                 cell.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)}, completion: { _ in
 
-                UIView.animate(withDuration: 0.1) {
-                    cell.transform = CGAffineTransform.identity
-                }
+                    UIView.animate(withDuration: 0.1) {
+                        cell.transform = CGAffineTransform.identity
+                    }
             })
 
         case .zoomOut?:
@@ -88,6 +155,12 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
                     }
             })
 
+        case .paperFoldLeft?:
+            paperFoldAnimation(cell: cell, direction: .left)
+
+        case .paperFoldRight?:
+            paperFoldAnimation(cell: cell, direction: .right)
+
         default:
             break
         }
@@ -96,26 +169,6 @@ class SecondTableViewController: UIViewController, UITableViewDataSource, UITabl
         UIView.animate(withDuration: 1.0) {
             cell.alpha = 1.0
             cell.layer.transform = CATransform3DIdentity
-        }
-    }
-
-    func animateTableView() {
-        self.tableVew.reloadData()
-        let cells = self.tableVew.visibleCells
-        let tableViewHeight = self.tableVew.bounds.size.height
-        
-        for cell in cells {
-            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
-        }
-        
-        var delayCounter = 0
-
-        for cell in cells {
-
-            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                cell.transform = CGAffineTransform.identity
-                }, completion: nil)
-            delayCounter += 1
         }
     }
 }
