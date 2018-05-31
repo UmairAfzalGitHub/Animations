@@ -35,11 +35,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+}
+
+extension ViewController {
 
     // MARK: - UITableView DataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return dataSource.count
+        return dataSource.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
